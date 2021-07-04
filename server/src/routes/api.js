@@ -106,9 +106,61 @@ router.post('/note', (req, res, next) => {
     });
 });
 
+/* PUT METHODS */
 
+// UPDATE category
+router.put('/category/:categoryId', (req, res, next) => {
+    pool
+    .then((pool) => {
+        pool.query('UPDATE FROM categories SET ? WHERE categoryId = ?', [req.body, req.params.categoryId]);
+    })
+    .then(() => {
+        res.status(200).json({message: `Updated category ${req.body.categoryName}`});
+    })
+    .catch((e) => {
+        console.log(e);
+    });
+});
 
+// UPDATE note
+router.put('/note/:noteId', (req, res, next) => {
+    pool
+    .then((pool) => {
+        pool.query('UPDATE FROM notes SET ? WHERE noteId = ?', [req.body, req.params.noteId]);
+    })
+    .then(() => {
+        res.status(200).json({message: `Updated note ${req.body.noteName}`})
+    })
+    .catch((e) => {
+        console.log(e);
+    });
+});
 
+/* DELETE METHODS */
 
+// DELETE category
+router.delete('/category/:categoryId', (req, res, next) => {
+    pool
+    .then((pool) => {
+        pool.query('DELETE FROM categories WHERE categoryId = ?', [req.params.categoryId])
+    })
+    .then(() => {
+        res.status(200).json({message: `Deleted category with categoryId: ${req.params.categoryId}`});
+    })
+    .catch((e) => {
+        console.log(e);
+    })
+});
+
+// DELETE note
+router.delete('/note/:noteId', (req, res, next) => {
+    pool
+    .then((pool) => {
+        pool.query('DELETE FROM notes WHERE noteId = ?', [req.params.noteId]);
+    })
+    .then(() => {
+        res.status(200).json({message: `Deleted note with noteId: ${req.params.noteId}`})
+    })
+})
 
 module.exports = router;
