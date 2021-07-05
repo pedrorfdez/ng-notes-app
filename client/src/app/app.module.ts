@@ -4,15 +4,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/homepage/home/home.component';
-import { EditComponent } from './components/forms/edit/edit.component';
 import { CreateComponent } from './components/forms/create/create.component';
+import { NavComponent } from './components/navigation/nav/nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    EditComponent,
-    CreateComponent
+    CreateComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
