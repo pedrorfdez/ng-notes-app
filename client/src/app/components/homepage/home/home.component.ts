@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { NoteService } from "../../../services/notes/note.service";
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,9 +9,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  categories: any = [];
+  
+  notes: any = [];
 
-  ngOnInit(): void {
+  showNotes: Boolean = false;
+
+  constructor(private noteService: NoteService) { }
+
+  notesSelector(categoryId: string) {
+    this.getCategoryNotes(categoryId);
+    this.showNotes = true;
   }
 
+  ngOnInit(): void {
+    this.getCategories();
+  }
+
+  getCategories() {
+    this.noteService.getCategories()
+      .subscribe(
+        res => {
+          this.categories = res;
+        },
+        err => console.log(err)
+      );
+  };
+
+  getCategoryNotes(categoryId: string) {
+    this.noteService.getCategoryNotes(categoryId)
+      .subscribe(
+        res => {
+          this.notes = res;
+        },
+        err => console.log(err)
+      );
+  };
 }

@@ -1,118 +1,82 @@
-<div class="mt-2" style="column-count: 2">
-  
-    <a href="#" class="list-group-item list-group-item-action mb-3">
-        <div class="d-flex w-100 justify-content-between">
-        <h2>CATEGORY 1</h2>
-        <small class="text-muted">5 notes</small>
+<div class="mt-3">
+  <!-- CATEGORIES -->
+  <ng-container *ngIf="!showNotes">
+    <div *ngFor="let category of categories; let i = index">
+      <div *ngIf="i % 2 == 0" class="row">
+        <div *ngIf="i < categories.length" class="col-6 p-0">
+          <a (click)="notesSelector(categories[i].categoryId)" [routerLink]="" queryParamsHandling="preserve" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+              <h2>{{categories[i].categoryName}}</h2>
+              <small class="text-muted">5 notes</small>
+            </div>
+            <p class="overflow-hidden" style="height: 75px;">
+              {{categories[i].categoryDescription}}
+            </p>
+          </a>
         </div>
-        <p class="overflow-hidden" style="height: 75px;">
-        Lorem, ipsum dolor.
-        </p>
-    </a>
-
-
-    <a href="#" class="list-group-item list-group-item-action mb-3">
-        <div class="d-flex w-100 justify-content-between">
-        <h2>CATEGORY 1</h2>
-        <small class="text-muted">5 notes</small>
+        <div *ngIf="i + 1 < categories.length" class="col-6 p-0">
+          <a (click)="notesSelector(categories[i + 1].categoryId)" [routerLink]="" queryParamsHandling="preserve" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+              <h2>{{categories[i + 1].categoryName}}</h2>
+              <small class="text-muted">5 notes</small>
+            </div>
+            <p class="overflow-hidden" style="height: 75px;">
+              {{categories[i + 1].categoryDescription}}
+            </p>
+          </a>
         </div>
-        <p class="overflow-hidden" style="height: 75px;">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum odit,
-        sapiente iure repudiandae necessitatibus distinctio molestias neque?
-        Alias, ullam optio quasi doloremque eius aliquid possimus eveniet
-        aperiam eaque nesciunt cumque blanditiis at reprehenderit tenetur,
-        nostrum quia fuga iusto nihil tempora quae magnam est ab, labore
-        recusandae. Alias eaque quisquam totam possimus quaerat! Expedita facere
-        nemo perspiciatis maiores at natus illo possimus voluptates. Neque
-        mollitia, voluptatem perferendis officia magnam magni laudantium porro
-        totam, rerum minus ipsa amet nesciunt repudiandae quidem beatae omnis
-        eum rem.
-        </p>
-    </a>
+      </div>
+    </div>
+  </ng-container>
 
 
-    <a href="#" class="list-group-item list-group-item-action mb-3">
-        <div class="d-flex w-100 justify-content-between">
-        <h2>CATEGORY 1</h2>
-        <small class="text-muted">5 notes</small>
+  <!-- NOTES -->
+
+  <ng-container *ngIf="showNotes">
+    <div *ngFor="let note of notes; let i = index">
+      <div *ngIf="i % 4 == 0" class="row">
+        <div *ngIf="i < notes.length" class="col-3 p-0">
+          <div href="#" class="card border-primary">
+            <div class="card-body">
+              <h4 class="card-title">{{notes[i].noteName}} {{notes[i].noteId}}</h4>
+              <p class="overflow-hidden" style="height: 75px;">
+                {{notes[i].noteText}}
+              </p>
+            </div>
+          </div>
         </div>
-        <p class="overflow-hidden" style="height: 75px;">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem maiores,
-        porro rem iste delectus, voluptates iure, harum illo suscipit sed
-        eveniet? Obcaecati incidunt itaque veritatis, maxime sequi saepe
-        necessitatibus quam dolor aliquam commodi, quis in labore deserunt
-        delectus minus eaque? Aut, non voluptatum! Architecto tenetur, iure
-        asperiores placeat laborum at?
-        </p>
-    </a>
-
-
-    <a href="#" class="list-group-item list-group-item-action mb-3">
-        <div class="d-flex w-100 justify-content-between">
-        <h2>CATEGORY 1</h2>
-        <small class="text-muted">5 notes</small>
+        <div *ngIf="i + 1 < notes.length" class="col-3 p-0">
+          <div href="#" class="card border-primary">
+            <div class="card-body">
+              <h4 class="card-title">{{notes[i + 1].noteName}} {{notes[i + 1].noteId}}</h4>
+              <p class="overflow-hidden" style="height: 75px;">
+                {{notes[i + 1].noteText}}
+              </p>
+            </div>
+          </div>
         </div>
-        <p class="overflow-hidden" style="height: 75px;">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
-        delectus ullam quam atque nulla distinctio vitae maxime praesentium in
-        labore soluta tempora, dicta corporis ad aspernatur odio ratione at?
-        Saepe.
-        </p>
-    </a>
-
+        <div *ngIf="i + 2 < notes.length" class="col-3 p-0">
+          <div href="#" class="card border-primary">
+            <div class="card-body">
+              <h4 class="card-title">{{notes[i + 2].noteName}} {{notes[i + 2].noteId}}</h4>
+              <p class="overflow-hidden" style="height: 75px;">
+                {{notes[i + 2].noteText}}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="i + 3 < notes.length" class="col-3 p-0">
+          <div href="#" class="card border-primary">
+            <div class="card-body">
+              <h4 class="card-title">{{notes[i + 3].noteName}} {{notes[i + 3].noteId}}</h4>
+              <p class="overflow-hidden" style="height: 75px;">
+                {{notes[i + 3].noteText}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
 </div>
 
-<div class="d-none row justify-content-between mt-2">
-  <div class="col-3">
-    <div class="card border-primary" style="width: 18rem">
-      <div class="card-header">HEADER</div>
-      <div class="card-body">
-        <h4 class="card-title">TITLE</h4>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
-          repellat vel dolorem illum accusamus, recusandae placeat omnis
-          molestias, nulla laudantium, eveniet atque eos soluta quas.
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-3">
-    <div class="card border-primary" style="width: 18rem">
-      <div class="card-header">HEADER</div>
-      <div class="card-body">
-        <h4 class="card-title">TITLE</h4>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
-          repellat vel dolorem illum accusamus, recusandae placeat omnis
-          molestias, nulla laudantium, eveniet atque eos soluta quas.
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-3">
-    <div class="card border-primary" style="width: 18rem">
-      <div class="card-header">HEADER</div>
-      <div class="card-body">
-        <h4 class="card-title">TITLE</h4>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
-          repellat vel dolorem illum accusamus, recusandae placeat omnis
-          molestias, nulla laudantium, eveniet atque eos soluta quas.
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-3">
-    <div class="card border-primary" style="width: 18rem">
-      <div class="card-header">HEADER</div>
-      <div class="card-body">
-        <h4 class="card-title">TITLE</h4>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
-          repellat vel dolorem illum accusamus, recusandae placeat omnis
-          molestias, nulla laudantium, eveniet atque eos soluta quas.
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
