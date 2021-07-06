@@ -4,7 +4,8 @@ USE ng_notes_db;
 
 CREATE TABLE categories(
     categoryId INT AUTO_INCREMENT PRIMARY KEY,
-    categoryName VARCHAR(100) NOT NULL
+    categoryName VARCHAR(100) NOT NULL,
+    categoryDescription VARCHAR(255)
 );
 
 CREATE TABLE notes(
