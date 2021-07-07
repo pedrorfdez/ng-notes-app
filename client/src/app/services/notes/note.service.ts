@@ -22,4 +22,17 @@ export class NoteService {
   getNote(noteId: string) {
     return this.http.get(`${this.API_URI}/note/${noteId}`);
   };
+
+  createNote(note: any) {
+    return this.http.post(`${this.API_URI}/note`, note);
+  }
+
+  deleteNote(noteId: string) {
+    return this.http.delete(`${this.API_URI}/note/${noteId}`);
+  }
+
+  editNote(noteId: string, newNote: any) {
+    return this.http.put(`${this.API_URI}/note/${noteId}`, newNote);
+  }
+
 }

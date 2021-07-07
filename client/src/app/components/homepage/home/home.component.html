@@ -1,44 +1,59 @@
-<div class="mt-3">
-  <!-- CATEGORIES -->
-  <ng-container *ngIf="!showNotes">
-    <div *ngFor="let category of categories; let i = index">
-      <div *ngIf="i % 2 == 0" class="row">
-        <div *ngIf="i < categories.length" class="col-6 p-0">
-          <a (click)="notesSelector(categories[i].categoryId)" [routerLink]="" queryParamsHandling="preserve" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-              <h2>{{categories[i].categoryName}}</h2>
-              <small class="text-muted">5 notes</small>
-            </div>
-            <p class="overflow-hidden" style="height: 75px;">
-              {{categories[i].categoryDescription}}
-            </p>
-          </a>
-        </div>
-        <div *ngIf="i + 1 < categories.length" class="col-6 p-0">
-          <a (click)="notesSelector(categories[i + 1].categoryId)" [routerLink]="" queryParamsHandling="preserve" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-              <h2>{{categories[i + 1].categoryName}}</h2>
-              <small class="text-muted">5 notes</small>
-            </div>
-            <p class="overflow-hidden" style="height: 75px;">
-              {{categories[i + 1].categoryDescription}}
-            </p>
-          </a>
-        </div>
+<!-- CATEGORIES -->
+<ng-container *ngIf="!showNotes">
+  <div *ngFor="let category of categories; let i = index">
+    <div *ngIf="i % 2 == 0" class="row">
+      <div *ngIf="i < categories.length" class="col-6 p-0">
+        <a (click)="notesSelector(categories[i].categoryId, categories[i].categoryName)" [routerLink]="" queryParamsHandling="preserve" class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <h2>{{categories[i].categoryName}}</h2>
+            <small class="text-muted">5 notes</small>
+          </div>
+          <p class="overflow-hidden" style="height: 75px;">
+            {{categories[i].categoryDescription}}
+          </p>
+        </a>
+      </div>
+      <div *ngIf="i + 1 < categories.length" class="col-6 p-0">
+        <a (click)="notesSelector(categories[i + 1].categoryId, categories[i + 1].categoryName)" [routerLink]="" queryParamsHandling="preserve" class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <h2>{{categories[i + 1].categoryName}}</h2>
+            <small class="text-muted">5 notes</small>
+          </div>
+          <p class="overflow-hidden" style="height: 75px;">
+            {{categories[i + 1].categoryDescription}}
+          </p>
+        </a>
       </div>
     </div>
-  </ng-container>
+  </div>
+</ng-container>
 
 
-  <!-- NOTES -->
+<!-- NOTES -->
 
-  <ng-container *ngIf="showNotes">
+<ng-container *ngIf="showNotes">
+
+  <div class="d-flex align-items-center mb-4" (click)="showNotesToggler()">
+    <div style="flex: 1;">
+      <i class="fas fa-arrow-alt-circle-left fa-3x" style="cursor: pointer;"></i>
+    </div>
+    <h1 class="m-0">{{currentCategory.categoryName | uppercase}}</h1>
+    <div style="flex: 1;"></div>
+  </div>
+
+  <ng-container *ngIf="notes.length > 0; else addnote">
     <div *ngFor="let note of notes; let i = index">
       <div *ngIf="i % 4 == 0" class="row">
         <div *ngIf="i < notes.length" class="col-3 p-0">
           <div href="#" class="card border-primary">
             <div class="card-body">
-              <h4 class="card-title">{{notes[i].noteName}} {{notes[i].noteId}}</h4>
+              <div class="d-flex w-100 justify-content-between overflow-hidden">
+                <h4 class="card-title overflow-hidden" style="width: 160px; height: 25px;">{{notes[i].noteName}}</h4>
+                <div>
+                  <button class="btn btn-secondary me-1" [routerLink]="[ '/edit', notes[i].noteId ]" [queryParams]="{categoryId: currentCategory.categoryId, categoryName: currentCategory.categoryName}"><i class="fas fa-pen"></i></button>
+                  <button class="btn btn-danger" (click)="deleteNote(notes[i].noteId, i)"><i class="fas fa-trash"></i></button>
+                </div>
+              </div>
               <p class="overflow-hidden" style="height: 75px;">
                 {{notes[i].noteText}}
               </p>
@@ -48,7 +63,13 @@
         <div *ngIf="i + 1 < notes.length" class="col-3 p-0">
           <div href="#" class="card border-primary">
             <div class="card-body">
-              <h4 class="card-title">{{notes[i + 1].noteName}} {{notes[i + 1].noteId}}</h4>
+              <div class="d-flex w-100 justify-content-between overflow-hidden">
+                <h4 class="card-title overflow-hidden" style="width: 160px; height: 25px;">{{notes[i + 1].noteName}}</h4>
+                <div>
+                  <button class="btn btn-secondary me-1" [routerLink]="[ '/edit', notes[i + 1].noteId ]" [queryParams]="{categoryId: currentCategory.categoryId, categoryName: currentCategory.categoryName}"><i class="fas fa-pen"></i></button>
+                  <button class="btn btn-danger" (click)="deleteNote(notes[i + 1].noteId, i + 1)"><i class="fas fa-trash"></i></button>
+                </div>
+              </div>
               <p class="overflow-hidden" style="height: 75px;">
                 {{notes[i + 1].noteText}}
               </p>
@@ -58,7 +79,13 @@
         <div *ngIf="i + 2 < notes.length" class="col-3 p-0">
           <div href="#" class="card border-primary">
             <div class="card-body">
-              <h4 class="card-title">{{notes[i + 2].noteName}} {{notes[i + 2].noteId}}</h4>
+              <div class="d-flex w-100 justify-content-between overflow-hidden">
+                <h4 class="card-title overflow-hidden" style="width: 160px; height: 25px;">{{notes[i + 2].noteName}}</h4>
+                <div>
+                  <button class="btn btn-secondary me-1" [routerLink]="[ '/edit', notes[i + 2].noteId ]" [queryParams]="{categoryId: currentCategory.categoryId, categoryName: currentCategory.categoryName}"><i class="fas fa-pen"></i></button>
+                  <button class="btn btn-danger" (click)="deleteNote(notes[i + 2].noteId, i + 2)"><i class="fas fa-trash"></i></button>
+                </div>
+              </div>
               <p class="overflow-hidden" style="height: 75px;">
                 {{notes[i + 2].noteText}}
               </p>
@@ -68,15 +95,36 @@
         <div *ngIf="i + 3 < notes.length" class="col-3 p-0">
           <div href="#" class="card border-primary">
             <div class="card-body">
-              <h4 class="card-title">{{notes[i + 3].noteName}} {{notes[i + 3].noteId}}</h4>
+              <div class="d-flex w-100 justify-content-between overflow-hidden">
+                <h4 class="card-title overflow-hidden" style="width: 160px; height: 25px;">{{notes[i + 3].noteName}}</h4>
+                <div>
+                  <button class="btn btn-secondary me-1" [routerLink]="[ '/edit', notes[i + 3].noteId ]" [queryParams]="{categoryId: currentCategory.categoryId, categoryName: currentCategory.categoryName}"><i class="fas fa-pen"></i></button>
+                  <button class="btn btn-danger" (click)="deleteNote(notes[i + 3].noteId, i + 3)"><i class="fas fa-trash"></i></button>
+                </div>
+              </div>
               <p class="overflow-hidden" style="height: 75px;">
                 {{notes[i + 3].noteText}}
               </p>
             </div>
           </div>
         </div>
+
+        <!-- ADD NOTE BUTTON -->
+        <ng-template *ngIf="i + 4 >= notes.length then addnote"></ng-template>
       </div>
     </div>
   </ng-container>
-</div>
 
+  <ng-template #addnote>
+    <div class="col-3 p-0">
+      <a  routerLink="/add" [queryParams]="{categoryId: currentCategory.categoryId, categoryName: currentCategory.categoryName}"  class="card border-warning">
+        <div class="card-body d-flex align-items-center justify-content-center" style="height: 159px;">
+          <div class="card-title">
+            <i class="fas fa-plus fa-4x"></i>
+          </div>
+        </div>
+      </a>
+    </div>
+  </ng-template>
+
+</ng-container>

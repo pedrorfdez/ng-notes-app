@@ -126,7 +126,7 @@ router.put('/category/:categoryId', (req, res, next) => {
 router.put('/note/:noteId', (req, res, next) => {
     pool
     .then((pool) => {
-        pool.query('UPDATE FROM notes SET ? WHERE noteId = ?', [req.body, req.params.noteId]);
+        pool.query('UPDATE notes SET ? WHERE noteId = ?', [req.body, req.params.noteId]);
     })
     .then(() => {
         res.status(200).json({message: `Updated note ${req.body.noteName}`})
