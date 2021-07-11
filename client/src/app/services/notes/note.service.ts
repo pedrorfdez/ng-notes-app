@@ -27,6 +27,10 @@ export class NoteService {
     return this.http.post(`${this.API_URI}/note`, note);
   }
 
+  addCategory(category: any) {
+    return this.http.post(`${this.API_URI}/category`, category);
+  }
+
   deleteNote(noteId: string) {
     return this.http.delete(`${this.API_URI}/note/${noteId}`);
   }

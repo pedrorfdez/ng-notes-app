@@ -20,7 +20,7 @@ import { NavComponent } from './components/navigation/nav/nav.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

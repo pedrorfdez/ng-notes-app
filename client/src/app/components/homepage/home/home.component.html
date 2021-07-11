@@ -48,7 +48,7 @@
           <div href="#" class="card border-primary">
             <div class="card-body">
               <div class="d-flex w-100 justify-content-between overflow-hidden">
-                <h4 class="card-title overflow-hidden" style="width: 160px; height: 25px;">{{notes[i].noteName}}</h4>
+                <h4 class="card-title overflow-hidden" style="width: 160px; height: 32px;">{{notes[i].noteName}}</h4>
                 <div>
                   <button class="btn btn-secondary me-1" [routerLink]="[ '/edit', notes[i].noteId ]" [queryParams]="{categoryId: currentCategory.categoryId, categoryName: currentCategory.categoryName}"><i class="fas fa-pen"></i></button>
                   <button class="btn btn-danger" (click)="deleteNote(notes[i].noteId, i)"><i class="fas fa-trash"></i></button>
@@ -64,7 +64,7 @@
           <div href="#" class="card border-primary">
             <div class="card-body">
               <div class="d-flex w-100 justify-content-between overflow-hidden">
-                <h4 class="card-title overflow-hidden" style="width: 160px; height: 25px;">{{notes[i + 1].noteName}}</h4>
+                <h4 class="card-title overflow-hidden" style="width: 160px; height: 32px;">{{notes[i + 1].noteName}}</h4>
                 <div>
                   <button class="btn btn-secondary me-1" [routerLink]="[ '/edit', notes[i + 1].noteId ]" [queryParams]="{categoryId: currentCategory.categoryId, categoryName: currentCategory.categoryName}"><i class="fas fa-pen"></i></button>
                   <button class="btn btn-danger" (click)="deleteNote(notes[i + 1].noteId, i + 1)"><i class="fas fa-trash"></i></button>
@@ -80,7 +80,7 @@
           <div href="#" class="card border-primary">
             <div class="card-body">
               <div class="d-flex w-100 justify-content-between overflow-hidden">
-                <h4 class="card-title overflow-hidden" style="width: 160px; height: 25px;">{{notes[i + 2].noteName}}</h4>
+                <h4 class="card-title overflow-hidden" style="width: 160px; height: 32px;">{{notes[i + 2].noteName}}</h4>
                 <div>
                   <button class="btn btn-secondary me-1" [routerLink]="[ '/edit', notes[i + 2].noteId ]" [queryParams]="{categoryId: currentCategory.categoryId, categoryName: currentCategory.categoryName}"><i class="fas fa-pen"></i></button>
                   <button class="btn btn-danger" (click)="deleteNote(notes[i + 2].noteId, i + 2)"><i class="fas fa-trash"></i></button>
@@ -96,7 +96,7 @@
           <div href="#" class="card border-primary">
             <div class="card-body">
               <div class="d-flex w-100 justify-content-between overflow-hidden">
-                <h4 class="card-title overflow-hidden" style="width: 160px; height: 25px;">{{notes[i + 3].noteName}}</h4>
+                <h4 class="card-title overflow-hidden" style="width: 160px; height: 32px;">{{notes[i + 3].noteName}}</h4>
                 <div>
                   <button class="btn btn-secondary me-1" [routerLink]="[ '/edit', notes[i + 3].noteId ]" [queryParams]="{categoryId: currentCategory.categoryId, categoryName: currentCategory.categoryName}"><i class="fas fa-pen"></i></button>
                   <button class="btn btn-danger" (click)="deleteNote(notes[i + 3].noteId, i + 3)"><i class="fas fa-trash"></i></button>

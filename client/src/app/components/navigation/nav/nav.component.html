@@ -6,9 +6,19 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ms-auto">
-          <a class="nav-link" aria-current="page" routerLink="/">Home</a>
-          <a class="nav-link" href="#">Features</a>
-          <button class="ms-1 btn btn-danger"><i class="fas fa-plus-circle me-1"></i>Category</button>
+          <div class="d-flex align-items-center">
+            <a class="nav-link" aria-current="page" routerLink="/">Home</a>
+          </div>
+          <div class="ms-2" style="width: 130px;">
+            <div class="d-flex flex-column w-100">
+              <button *ngIf="!buttonPressed" class="btn btn-danger" (click)="switch()"><i class="fas fa-plus-circle me-1"></i>Category</button>
+              <form *ngIf="buttonPressed" class="p-1 bg-danger">
+                <input class="form-control mb-1" style="width: 80%;" type="text" name="categoryName" placeholder="Name" [(ngModel)]="category.categoryName">
+                <textarea class="form-control mb-1 w-100 " name="categoryDescription" rows="3" placeholder="Description" [(ngModel)]="category.categoryDescription"></textarea>
+                <button class="btn btn-info w-100" (click)="addCategory();switch()">Add</button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
